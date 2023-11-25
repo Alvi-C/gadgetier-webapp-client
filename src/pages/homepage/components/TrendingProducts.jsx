@@ -15,7 +15,7 @@ const TrendingProducts = () => {
 				<TrendingProductCard />
 			</div>
 			<div className='text-center mt-10'>
-				<button className='bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded'>Show all products</button>
+				<button className='bg-green-700 hover:bg-green-700 text-white font-bold py-2 px-4 rounded'>Show all products</button>
 			</div>
 		</div>
 	)
