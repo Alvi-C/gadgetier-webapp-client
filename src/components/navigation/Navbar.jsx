@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import logo from '../../assets/gadgetier-logo.png'
 
 const Navbar = () => {
@@ -11,13 +12,13 @@ const Navbar = () => {
 					<div>
 						<ul className='menu menu-horizontal px-1'>
 							<li>
-								<a>Home</a>
+								<Link to='/'>Home</Link>
 							</li>
 							<li>
-								<a>Products</a>
+								<Link to='/products'>Products</Link>
 							</li>
 							<li>
-								<a>Login</a>
+								<Link to='/login'>Login</Link>
 							</li>
 						</ul>
 					</div>
