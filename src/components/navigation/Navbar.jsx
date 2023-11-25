@@ -1,24 +1,51 @@
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import logo from '../../assets/gadgetier-logo.png'
 
 const Navbar = () => {
 	return (
 		<div className='container-size'>
 			<div className='navbar bg-base-100'>
-				<div className='flex-1'>
+				<Link to='/' className='flex-1'>
 					<img className='w-32 lg:w-40' src={logo} alt='' />
-				</div>
+				</Link>
 				<div className='flex-none gap-2'>
 					<div>
-						<ul className='menu menu-horizontal px-1'>
+						<ul className='flex space-x-3 md:space-x-6 text-base font-medium'>
 							<li>
-								<Link to='/'>Home</Link>
+								<NavLink
+									to='/'
+									className={({ isActive }) =>
+										isActive
+											? 'text-xs md:text-base font-semibold leading-6 text-white bg-green-600 rounded-tl-2xl md:rounded-tl-full rounded-tr-2xl md:rounded-tr-full px-3 md:px-5 py-1'
+											: 'text-xs md:text-base font-semibold leading-6 text-gray-800'
+									}
+								>
+									Home
+								</NavLink>
 							</li>
 							<li>
-								<Link to='/products'>Products</Link>
+								<NavLink
+									to='/products'
+									className={({ isActive }) =>
+										isActive
+											? 'text-xs md:text-base font-semibold leading-6 text-white bg-green-600 rounded-tl-2xl md:rounded-tl-full rounded-tr-2xl md:rounded-tr-full px-3 md:px-5 py-1'
+											: 'text-xs md:text-base font-semibold leading-6 text-gray-700'
+									}
+								>
+									Products
+								</NavLink>
 							</li>
 							<li>
-								<Link to='/login'>Login</Link>
+								<NavLink
+									to='/login'
+									className={({ isActive }) =>
+										isActive
+											? 'text-xs md:text-base font-semibold leading-6 text-white bg-green-600 rounded-tl-2xl md:rounded-tl-full rounded-tr-2xl md:rounded-tr-full px-3 md:px-5 py-1'
+											: 'text-xs md:text-base font-semibold leading-6 text-gray-700'
+									}
+								>
+									Login
+								</NavLink>
 							</li>
 						</ul>
 					</div>

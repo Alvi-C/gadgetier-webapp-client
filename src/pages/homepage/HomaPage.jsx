@@ -1,5 +1,6 @@
 import FeaturedProducts from './components/FeaturedProducts'
 import HomeBanner from './components/HomeBanner'
+import Steps from './components/Steps'
 import TrendingProducts from './components/TrendingProducts'
 
 const HomaPage = () => {
@@ -7,7 +8,8 @@ const HomaPage = () => {
 		<div>
 			<HomeBanner />
             <FeaturedProducts />
-            <TrendingProducts/>
+			<TrendingProducts />
+			<Steps/>
 		</div>
 	)
 }

@@ -14,7 +14,7 @@ const TrendingProductCard = () => {
 					</span>
 					<div className='flex items-center justify-between text-sm text-gray-600 fill-current'>
 						<div className='flex items-center'>
-							<button className='flex items-center hover:bg-green-100 p-1'>
+							<button className='flex items-center hover:bg-green-100 p-1 rounded-md'>
 								<img
 									className='w-5 h-5 -mt-1'
 									src='https://img.icons8.com/retro/32/thumb-up.png'
@@ -22,7 +22,7 @@ const TrendingProductCard = () => {
 								/>
 								<span className='ml-1'>20</span>
 							</button>
-							<button className='flex items-center hover:bg-red-100 p-1 ml-4'>
+							<button className='flex items-center hover:bg-red-100 p-1 ml-1 rounded-md'>
 								<img
 									className='w-5 h-5 mt-1'
 									src='https://img.icons8.com/retro/32/thumbs-down.png'

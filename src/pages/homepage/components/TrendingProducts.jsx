@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+import PrimaryButton from '../../../components/shared/PrimaryButton'
 import SectionHeading from '../../../components/shared/SectionHeading'
 import TrendingProductCard from './TrendingProductCard'
 
@@ -14,9 +16,9 @@ const TrendingProducts = () => {
 				<TrendingProductCard />
 				<TrendingProductCard />
 			</div>
-			<div className='text-center mt-10'>
-				<button className='bg-green-700 hover:bg-green-700 text-white font-bold py-2 px-4 rounded'>Show all products</button>
-			</div>
+			<Link to='/products' className='text-center mt-6'>
+				<PrimaryButton title='View All Products' />
+			</Link>
 		</div>
 	)
 }
