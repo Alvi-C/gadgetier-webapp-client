@@ -1,15 +1,15 @@
-
-import FeaturedProducts from "./components/FeaturedProducts";
-import HomeBanner from "./components/HomeBanner";
-
+import FeaturedProducts from './components/FeaturedProducts'
+import HomeBanner from './components/HomeBanner'
+import TrendingProducts from './components/TrendingProducts'
 
 const HomaPage = () => {
-    return (
-			<div>
-            <HomeBanner />
+	return (
+		<div>
+			<HomeBanner />
             <FeaturedProducts />
-            </div>
-		)
-};
+            <TrendingProducts/>
+		</div>
+	)
+}
 
-export default HomaPage;
+export default HomaPage
