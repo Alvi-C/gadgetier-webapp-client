@@ -14,10 +14,10 @@ const DetailsInfo = () => {
 						<span className='font-bold text-gray-900 '>Brand: </span>
 						<span className='text-gray-600 '>Brand name</span>
 					</div>
-					<div>
-						<span className='font-bold text-gray-900 '>Category: </span>
-						<span className='text-gray-600 '>mobile</span>
-					</div>
+				</div>
+				<div className="my-4">
+					<span className='font-bold text-gray-900 '>Tags: </span>
+					<span className='text-gray-600 '>mobile</span>
 				</div>
 				<div className='flex mb-4'>
 					<span className='font-bold text-gray-900 mr-2'>Ratings: </span>

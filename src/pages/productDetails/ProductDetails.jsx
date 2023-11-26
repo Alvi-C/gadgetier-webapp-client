@@ -14,7 +14,11 @@ const ProductDetails = () => {
 				<div className='flex flex-col lg:flex-row -mx-4'>
 					<div className='md:flex-1 order-2 px-4'>
 						<div className='h-[460px] rounded-lg bg-gray-300 mb-4'>
-							<img className='w-full h-full object-cover' src='' alt='' />
+							<img
+								className='w-full h-full rounded-xl object-cover'
+								src='https://thegadgetflow.com/wp-content/uploads/2023/11/TiT-Stylish-Unique-Top-Inspired-Wrist-Wearable-01-1-768x461.jpeg'
+								alt=''
+							/>
 						</div>
 						<div className='flex items-center justify-between mb-8'>
 							<PrimaryButton title='Go back' />
