@@ -22,9 +22,6 @@ const Footer = () => {
 								<Link to='/'>About</Link>
 							</div>
 							<div className='px-5 py-2'>
-								<Link to='/'>Pricing</Link>
-							</div>
-							<div className='px-5 py-2'>
 								<Link to='/'>Privacy & terms</Link>
 							</div>
 							<div className='px-5 py-2'>
