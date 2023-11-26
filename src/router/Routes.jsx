@@ -5,6 +5,7 @@ import HomaPage from '../pages/homepage/HomaPage';
 import Login from '../pages/auth/Login';
 import Signup from '../pages/auth/Signup';
 import ProductsPage from '../pages/productsPage/ProductsPage';
+import ProductDetails from '../pages/productDetails/ProductDetails';
 
 
 
@@ -21,6 +22,10 @@ const Routes = createBrowserRouter([
             {
                 path: "/products",
                 element: <ProductsPage/>
+            },
+            {
+                path: "/products/:id",
+                element: <ProductDetails/>
             },
             {
                 path: "/login",

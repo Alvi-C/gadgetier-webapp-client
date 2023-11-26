@@ -6,7 +6,7 @@ const Footer = () => {
     return (
 			<footer className='w-full relative text-center bg-green-50 text-green-700'>
 				<div className='px-6 py-8 md:py-14 xl:pt-20'>
-					<h2 className='font-bold text-3xl xl:text-4xl'>
+					<h2 className='font-bold text-3xl xl:text-4xl mb-6'>
 						<span className='text-black'>
 							Ready to know what your customers says?
 						</span>

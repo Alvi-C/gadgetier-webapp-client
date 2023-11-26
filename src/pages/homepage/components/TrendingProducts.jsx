@@ -8,7 +8,7 @@ const TrendingProducts = () => {
 	return (
 		<div className='container-size px-2 py-16 lg:px-8'>
 			<SectionHeading title='Trending Products' />
-			<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 row-gap-5 mb-8 '>
+			<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 row-gap-5 mb-16'>
 				<TrendingProductCard />
 				<TrendingProductCard />
 				<TrendingProductCard />
@@ -16,7 +16,7 @@ const TrendingProducts = () => {
 				<TrendingProductCard />
 				<TrendingProductCard />
 			</div>
-			<Link to='/products' className='text-center mt-6'>
+			<Link to='/products' className='text-center'>
 				<PrimaryButton title='View All Products' />
 			</Link>
 		</div>
