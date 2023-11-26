@@ -19,13 +19,13 @@ const Footer = () => {
 					<div className='mt-14'>
 						<nav className='flex flex-wrap justify-center text-base font-medium'>
 							<div className='px-5 py-2'>
-								<Link to='/'>About</Link>
+								<Link to='/about'>About</Link>
 							</div>
 							<div className='px-5 py-2'>
-								<Link to='/'>Privacy & terms</Link>
+								<Link to='/privacy'>Privacy & terms</Link>
 							</div>
 							<div className='px-5 py-2'>
-								<Link to='/'>Contact</Link>
+								<Link to='/contact'>Contact</Link>
 							</div>
 						</nav>
 						<p className='mt-7 text-base'>© 2023 Gadgetier, LLC</p>

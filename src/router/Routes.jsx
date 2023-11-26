@@ -7,18 +7,19 @@ import Signup from '../pages/auth/Signup';
 import ProductsPage from '../pages/productsPage/ProductsPage';
 import ProductDetails from '../pages/productDetails/ProductDetails';
 import MainDashboard from '../layouts/dashboard/MainDashboard';
-import UserDashboard from '../pages/user/UserDashboard';
 import AddUserProduct from '../pages/user/components/AddUserProduct';
 import UserProductList from '../pages/user/components/UserProductList';
-import ModaratorDashboard from '../pages/modarator/ModaratorDashboard';
 import ModProductApproval from '../pages/modarator/components/ModProductApproval';
 import ModManageReport from '../pages/modarator/components/ModManageReport';
-import AdminDashboard from '../pages/admin/AdminDashboard';
 import ManageUsers from '../pages/admin/components/ManageUsers';
 import ManageCoupons from '../pages/admin/components/ManageCoupons';
 import AboutUs from '../pages/othersPage/AboutUs';
 import PrivacyPage from '../pages/othersPage/PrivacyPage';
 import ContactPage from '../pages/othersPage/ContactPage';
+import UserProfile from '../pages/user/components/UserProfile';
+import UserHome from '../pages/user/UserHome';
+import ModaratorHome from '../pages/modarator/ModaratorHome';
+import AdminHome from '../pages/admin/AdminHome';
 
 
 
@@ -69,8 +70,12 @@ const Routes = createBrowserRouter([
 			//---------normal user's routes-------------------
 			{
 				path: '/dashboard/user/userHome',
-				element: <UserDashboard />,
-			},
+				element: <UserHome/>,
+            },
+            {
+                path: '/dashboard/user/profile',
+                element: <UserProfile/>
+            },
 			{
 				path: '/dashboard/user/addProduct',
 				element: <AddUserProduct />,
@@ -83,7 +88,7 @@ const Routes = createBrowserRouter([
 			//---------modaretor's routes-------------------
 			{
 				path: '/dashboard/moderator/modHome',
-				element: <ModaratorDashboard />,
+				element: <ModaratorHome/>,
 			},
 			{
 				path: '/dashboard/moderator/products',
@@ -97,7 +102,7 @@ const Routes = createBrowserRouter([
             //---------admin's routes-------------------
             {
                 path: '/dashboard/admin/adminHome',
-                element: <AdminDashboard/>
+                element: <AdminHome/>
             },
             {
                 path: '/dashboard/admin/manageUsers',
