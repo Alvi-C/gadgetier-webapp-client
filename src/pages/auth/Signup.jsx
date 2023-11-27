@@ -83,7 +83,7 @@ const Signup = () => {
 			</div>
 			<div className='col-span-1 lg:col-span-4'>
 				<img
-					src='https://images.unsplash.com/photo-1531548731165-c6ae86ff6491?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80'
+					src='https://img.freepik.com/free-photo/metaverse-concept-collage-design_23-2149419859.jpg?w=1380&t=st=1701108699~exp=1701109299~hmac=98549736f2544fd8b4e7db2a05bbccc1e3bafb3db5003be97cfa24bdce4281b2'
 					alt='3 women looking at a laptop'
 					className='object-cover w-full h-64 min-h-full bg-gray-100'
 					loading='lazy'

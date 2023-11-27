@@ -13,10 +13,7 @@ const Login = () => {
 	return (
 		<section className='grid grid-cols-1 gap-0 lg:grid-cols-12'>
 			<div className='w-full col-span-1 p-4 mx-auto mt-6 lg:col-span-8 xl:p-12 md:w-2/4'>
-				<Link
-					to='/'
-					className='flex items-center justify-start'
-				>
+				<Link to='/' className='flex items-center justify-start'>
 					<img className='w-40' src={logo} alt='logo' />
 				</Link>
 				<h1 className='mt-6 mb-4 text-xl font-bold text-left text-gray-800'>
@@ -78,17 +75,14 @@ const Login = () => {
 							Create an account
 						</Link>
 					</p>
-					<a
-						href='#'
-						className='block text-xs text-slate-400 hover:text-black'
-					>
+					<a href='#' className='block text-xs text-slate-400 hover:text-black'>
 						Privacy & Terms
 					</a>
 				</div>
 			</div>
 			<div className='col-span-1 lg:col-span-4'>
 				<img
-					src='https://images.unsplash.com/photo-1531548731165-c6ae86ff6491?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80'
+					src='https://img.freepik.com/free-photo/man-wearing-vr-glasses-with-gradient-background_23-2148864957.jpg?w=826&t=st=1701108636~exp=1701109236~hmac=83b92a19d54d2d244b2127e26535f3567d9ab323796bd8eb737ac2e2ce4bbad9'
 					alt='3 women looking at a laptop'
 					className='object-cover w-full h-64 min-h-full bg-gray-100'
 					loading='lazy'
