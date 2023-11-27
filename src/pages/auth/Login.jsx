@@ -1,13 +1,43 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import logo from '../../assets/gadgetier-logo.png'
 import { useState } from 'react'
 import SocialLogin from './components/SocialLogin'
+import { useForm } from 'react-hook-form'
+import useAuth from '../../hooks/useAuth';
+import Swal from 'sweetalert2'
 
 const Login = () => {
 	const [showPassword, setShowPassword] = useState(false)
-
+	const {logIn} = useAuth()
 	const togglePasswordVisibility = () => {
 		setShowPassword(!showPassword)
+	}
+
+	const navigate = useNavigate()
+	const location = useLocation()
+	const from = location.state?.from?.pathname || '/'
+
+	const {
+		register,
+		handleSubmit,
+		reset,
+		formState: { errors },
+	} = useForm()
+
+	const onSubmit = data => {
+		logIn(data.email, data.password).then(result => {
+			const loggedUser = result.user
+			console.log(loggedUser)
+			Swal.fire({
+				position: 'top-end',
+				icon: 'success',
+				title: 'You are logged in!',
+				showConfirmButton: false,
+				timer: 1500,
+			})
+			reset()
+			navigate(from, { replace: true })
+		})
 	}
 
 	return (
@@ -23,26 +53,38 @@ const Login = () => {
 					<SocialLogin />
 					<div className='divider mt-7 text-sm'>or</div>
 				</div>
-				<form className='pb-1 space-y-4'>
+				<form onSubmit={handleSubmit(onSubmit)} className='pb-1 space-y-4'>
 					<div className='block border-b-2 pb-2 focus-within:border-emerald-600'>
 						<label className='block mb-1 text-sm font-medium text-slate-500'>
 							Your email:
 						</label>
 						<input
-							className='border-none text-slate-700 bg-transparent outline-none placeholder:text-xs placeholder:text-slate-400 focus:outline-none pt-2'
 							type='email'
+							{...register('email', { required: true })}
 							placeholder='your registered email'
+							className='w-full border-none text-slate-700 bg-transparent outline-none placeholder:text-xs placeholder:text-slate-400 focus:outline-none pt-2'
 						/>
+						{errors.email && (
+							<span className='label-text-alt mt-1 text-red-500'>
+								* email is required
+							</span>
+						)}
 					</div>
 					<div className='block border-b-2 pb-2 focus-within:border-emerald-600'>
 						<label className='block mb-1 text-sm font-medium text-slate-500'>
 							Your Password:
 						</label>
 						<input
-							className='border-none text-slate-700 bg-transparent outline-none placeholder:text-xs placeholder:text-slate-400 focus:outline-none pt-2'
 							type={showPassword ? 'text' : 'password'}
+							{...register('password', { required: true })}
 							placeholder='password'
+							className='w-full border-none text-slate-700 bg-transparent outline-none placeholder:text-xs placeholder:text-slate-400 focus:outline-none pt-2'
 						/>
+						{errors.password && (
+							<span className='label-text-alt mt-1 text-red-500'>
+								* password is required
+							</span>
+						)}
 					</div>
 
 					<div className='flex items-center justify-between'>

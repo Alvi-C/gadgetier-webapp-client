@@ -1,7 +1,22 @@
 import { Link, NavLink } from 'react-router-dom'
 import logo from '../../assets/gadgetier-logo.png'
+import useAuth from '../../hooks/useAuth'
 
 const Navbar = () => {
+
+	const {user, logOut} = useAuth()
+	const displayUserFirstName = user?.displayName.split(' ')[0]
+
+	const handleLogOut = () => {
+		logOut()
+			.then(() => {})
+			.catch(error => {
+				console.log(error)
+			})
+	}
+
+
+
 	return (
 		<div className='container-size'>
 			<div className='navbar bg-base-100'>
@@ -35,47 +50,45 @@ const Navbar = () => {
 									Products
 								</NavLink>
 							</li>
-							<li>
-								<NavLink
-									to='/login'
-									className={({ isActive }) =>
-										isActive
-											? 'text-xs md:text-base font-semibold leading-6 text-white bg-green-600 rounded-tl-2xl md:rounded-tl-full rounded-tr-2xl md:rounded-tr-full px-3 md:px-5 py-1'
-											: 'text-xs md:text-base font-semibold leading-6 text-gray-700'
-									}
-								>
-									Login
-								</NavLink>
-							</li>
+							{!user && (
+								<li>
+									<NavLink
+										to='/login'
+										className={({ isActive }) =>
+											isActive
+												? 'text-xs md:text-base font-semibold leading-6 text-white bg-green-600 rounded-tl-2xl md:rounded-tl-full rounded-tr-2xl md:rounded-tr-full px-3 md:px-5 py-1'
+												: 'text-xs md:text-base font-semibold leading-6 text-gray-700'
+										}
+									>
+										Login
+									</NavLink>
+								</li>
+							)}
 						</ul>
 					</div>
-					<div className='dropdown dropdown-end'>
-						<label tabIndex={0} className='btn btn-ghost btn-circle avatar'>
-							<div className='w-10 rounded-full'>
-								<img
-									alt='Tailwind CSS Navbar component'
-									src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToR4tcDYkTzNIOlgx-rR8ElLCJN2SMHDgWEFNZB_hKWnCDVlARCmhNoJxjq3hxw2tUEAM&usqp=CAU'
-								/>
-							</div>
-						</label>
-						<ul
-							tabIndex={0}
-							className='mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52'
-						>
-							<li>
-								<a className='justify-between'>
-									Profile
-									<span className='badge'>New</span>
-								</a>
-							</li>
-							<li>
-								<a>Settings</a>
-							</li>
-							<li>
-								<a>Logout</a>
-							</li>
-						</ul>
-					</div>
+					{user && (
+						<div className='dropdown dropdown-end'>
+							<label tabIndex={0} className='btn btn-ghost btn-circle avatar'>
+								<div className='w-10 rounded-full'>
+									<img alt='user-pic' src={user?.photoURL} />
+								</div>
+							</label>
+							<ul
+								tabIndex={0}
+								className='mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52'
+							>
+								<li>
+									<p className='disabled'>{displayUserFirstName}</p>
+								</li>
+								<li>
+									<a>Dashboard</a>
+								</li>
+								<li>
+									<button onClick={handleLogOut}>Logout</button>
+								</li>
+							</ul>
+						</div>
+					)}
 				</div>
 			</div>
 		</div>
