@@ -1,27 +1,13 @@
-import StarRating from "./StarRating";
 
 
 const DetailsInfo = () => {
     return (
 			<div>
 				<h2 className='text-2xl font-bold text-gray-900 mb-2'>Heading</h2>
-				<div className='flex mb-2'>
-					<div className='mr-4'>
-						<span className='font-bold text-gray-900 '>Price: </span>
-						<span className='text-gray-600 '>$123</span>
-					</div>
-					<div className='mr-4'>
-						<span className='font-bold text-gray-900 '>Brand: </span>
-						<span className='text-gray-600 '>Brand name</span>
-					</div>
-				</div>
+
 				<div className="my-4">
 					<span className='font-bold text-gray-900 '>Tags: </span>
 					<span className='text-gray-600 '>mobile</span>
-				</div>
-				<div className='flex mb-4'>
-					<span className='font-bold text-gray-900 mr-2'>Ratings: </span>
-					<StarRating rating={3} />
 				</div>
 				<div>
 					<span className='font-bold text-gray-900 '>Product Description:</span>

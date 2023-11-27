@@ -1,13 +1,10 @@
-
 import { useState } from 'react'
 import { TagsInput } from 'react-tag-input-component'
 import { useForm } from 'react-hook-form'
 
-
-const AddUserProduct = () => {
-
-	const [tags, setTags] = useState([])
-	const { register, handleSubmit, reset } = useForm()
+const UpdateUserProduct = () => {
+	const [tags, setTags] = useState(['Shoe', 'Sport'])
+	const { register, handleSubmit } = useForm()
 
 	const userInfo = {
 		userName: 'David',
@@ -15,27 +12,25 @@ const AddUserProduct = () => {
 		userImage: 'https://images.unsplash.com',
 	}
 
+	const productData = {
+		userName: userInfo.userName,
+		userEmail: userInfo.userEmail,
+		userImage: userInfo.userImage,
+		productName: 'Nike Airwick',
+		image: 'https://www.nike.com',
+		description: 'This is description',
+		tags: tags,
+	}
+
 	const onSubmit = data => {
-		// console.log(data);
-		const productData = {
-			userName: userInfo.userName,
-			userEmail: userInfo.userEmail,
-			userImage: userInfo.userImage,
-			productName: data.productName,
-			image: data.productImage,
-			description: data.description,
-			tags: tags,
-		}
-		console.log(productData)
-		reset()
-		setTags([])
+		console.log(data)
 	}
 
 
 	return (
 		<div className='min-h-screen flex items-center justify-center bg-green-700'>
 			<div className='w-full lg:w-1/2 px-4 my-16'>
-				<h2 className='text-3xl font-bold text-white mb-2'>Add product</h2>
+				<h2 className='text-3xl font-bold text-white mb-2'>Update product</h2>
 				<div className='bg-white relative rounded-lg p-8 sm:p-12 shadow-lg'>
 					<form onSubmit={handleSubmit(onSubmit)}>
 						<div className='mb-2'>
@@ -69,22 +64,27 @@ const AddUserProduct = () => {
 							<input
 								type='text'
 								{...register('productName', { required: true })}
+								defaultValue={productData.productName}
 								placeholder='Product Name'
 								className='w-full rounded py-3 px-[14px] text-base border outline-none focus-visible:shadow-none focus:border-green-500'
 							/>
 						</div>
+
 						<div className='mb-2'>
 							<input
 								type='text'
 								{...register('productImage', { required: true })}
+								defaultValue={productData.image}
 								placeholder='Product image url'
 								className='w-full rounded py-3 px-[14px] text-base border outline-none focus-visible:shadow-none focus:border-green-500'
 							/>
 						</div>
+
 						<div className='mb-2'>
 							<textarea
 								rows='6'
 								{...register('description', { required: true })}
+								defaultValue={productData.description}
 								placeholder='Product description'
 								className='w-full rounded py-3 px-[14px] text-base border outline-none focus-visible:shadow-none focus:border-green-500'
 							></textarea>
@@ -97,12 +97,12 @@ const AddUserProduct = () => {
 								placeHolder='Enter tags'
 							/>
 							<em className='text-slate-400 text-sm'>
-								press enter to add new tag
+								you cannot change tags
 							</em>
 						</div>
 						<input
 							type='submit'
-							value='Add Product'
+							value='Update Product'
 							className='mt-6 px-6 py-2 text-sm font-medium text-white leading-tight inline-block bg-green-700 rounded-full shadow-xl border border-transparent hover:bg-green-800'
 						/>
 					</form>
@@ -112,4 +112,4 @@ const AddUserProduct = () => {
 	)
 }
 
-export default AddUserProduct
+export default UpdateUserProduct
