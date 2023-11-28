@@ -2,33 +2,53 @@
 import { useState } from 'react'
 import { TagsInput } from 'react-tag-input-component'
 import { useForm } from 'react-hook-form'
+import useAuth from '../../../hooks/useAuth';
+import useAxiosPublic from '../../../hooks/useAxiosPublic';
+import Swal from 'sweetalert2';
 
 
 const AddUserProduct = () => {
 
 	const [tags, setTags] = useState([])
 	const { register, handleSubmit, reset } = useForm()
+	const { user } = useAuth()
+	const axiosPublic = useAxiosPublic()
 
 	const userInfo = {
-		userName: 'David',
-		userEmail: 'aaa@example.com',
-		userImage: 'https://images.unsplash.com',
+		userName: user?.displayName,
+		userEmail: user?.email,
+		userImage: user?.photoURL,
 	}
 
-	const onSubmit = data => {
+	const onSubmit = async data => {
 		// console.log(data);
 		const productData = {
-			userName: userInfo.userName,
-			userEmail: userInfo.userEmail,
+			name: userInfo.userName,
+			email: userInfo.userEmail,
 			userImage: userInfo.userImage,
 			productName: data.productName,
 			image: data.productImage,
 			description: data.description,
 			tags: tags,
+			upVote: 0,
+			downVote: 0,
+			status: 'pending',
+			reported: 'no',
 		}
-		console.log(productData)
-		reset()
-		setTags([])
+		// console.log(productData)
+
+		const res = await axiosPublic.post('/products', productData)
+		if (res.data?.insertedId) {
+			reset()
+			setTags([])
+			Swal.fire({
+				position: 'top-end',
+				icon: 'success',
+				title: `${data.productName} added successfully`,
+				showConfirmButton: false,
+				timer: 1500,
+			})
+		}
 	}
 
 

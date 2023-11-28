@@ -1,5 +1,20 @@
 
+import useAxiosPublic from '../../../hooks/useAxiosPublic';
+import useAuth from '../../../hooks/useAuth';
+import { useQuery } from '@tanstack/react-query';
 const UserProfile = () => {
+
+	const { user } = useAuth();
+	const axiosPublic = useAxiosPublic();
+
+	const { data: userData } = useQuery({
+		queryKey: ['userData', user?.email],
+		queryFn: async () => {
+			const res = await axiosPublic.get(`/users/${user?.email}`);
+			return res.data;
+		},
+	})
+
     return (
 			<div className='min-h-screen flex items-center justify-center bg-green-700'>
 				<div className='bg-white overflow-hidden shadow rounded-lg border'>
@@ -18,7 +33,7 @@ const UserProfile = () => {
 									Full name
 								</div>
 								<div className='mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2'>
-									Osthir Bangla
+									{userData?.name}
 								</div>
 							</div>
 							<div className='py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6'>
@@ -26,7 +41,7 @@ const UserProfile = () => {
 									Email address
 								</div>
 								<div className='mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2'>
-									johndoe@example.com
+									{userData?.email}
 								</div>
 							</div>
 							<div className='py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6'>
@@ -40,7 +55,7 @@ const UserProfile = () => {
 							<div className='py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6'>
 								<div className='text-sm font-medium text-gray-500'>Status</div>
 								<div className='mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2'>
-									Verified
+									{userData?.status}
 								</div>
 							</div>
 						</div>
