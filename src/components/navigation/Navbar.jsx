@@ -1,6 +1,7 @@
 import { Link, NavLink } from 'react-router-dom'
 import logo from '../../assets/gadgetier-logo.png'
 import useAuth from '../../hooks/useAuth'
+import { FaUser } from 'react-icons/fa'
 
 const Navbar = () => {
 
@@ -78,10 +79,16 @@ const Navbar = () => {
 								className='mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52'
 							>
 								<li>
-									<p className='disabled'>{displayUserFirstName}</p>
+									<div
+										className='disabled font-bold bg-slate-100 rounded-md'
+										style={{ pointerEvents: 'none' }}
+									>
+										<FaUser />
+										<p>{displayUserFirstName}</p>
+									</div>
 								</li>
 								<li>
-									<a>Dashboard</a>
+									<Link to='/dashboard/user/userHome'>Dashboard</Link>
 								</li>
 								<li>
 									<button onClick={handleLogOut}>Logout</button>
