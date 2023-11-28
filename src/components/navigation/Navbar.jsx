@@ -2,6 +2,8 @@ import { Link, NavLink } from 'react-router-dom'
 import logo from '../../assets/gadgetier-logo.png'
 import useAuth from '../../hooks/useAuth'
 import { FaUser } from 'react-icons/fa'
+import useAdmin from '../../hooks/useAdmin';
+import useModerator from '../../hooks/useModerator';
 
 const Navbar = () => {
 
@@ -10,6 +12,9 @@ const Navbar = () => {
 		? user?.displayName.split(' ')[0]
 		: user?.displayName
 
+	const [isAdmin] = useAdmin()
+	const [isModerator] = useModerator()
+
 	const handleLogOut = () => {
 		logOut()
 			.then(() => {})
@@ -17,7 +22,6 @@ const Navbar = () => {
 				console.log(error)
 			})
 	}
-
 
 
 	return (
@@ -69,7 +73,7 @@ const Navbar = () => {
 							)}
 						</ul>
 					</div>
-					{user && (
+					{user && !isAdmin && !isModerator && (
 						<div className='dropdown dropdown-end'>
 							<label tabIndex={0} className='btn btn-ghost btn-circle avatar'>
 								<div className='w-10 rounded-full'>
@@ -90,7 +94,67 @@ const Navbar = () => {
 									</div>
 								</li>
 								<li>
-									<Link to='/dashboard/user/userHome'>Dashboard</Link>
+									<Link to='/dashboard/user/userHome'>
+										User&apos;s Dashboard
+									</Link>
+								</li>
+								<li>
+									<button onClick={handleLogOut}>Logout</button>
+								</li>
+							</ul>
+						</div>
+					)}
+					{user && isAdmin && !isModerator && (
+						<div className='dropdown dropdown-end'>
+							<label tabIndex={0} className='btn btn-ghost btn-circle avatar'>
+								<div className='w-10 rounded-full'>
+									<img alt='user-pic' src={user?.photoURL} />
+								</div>
+							</label>
+							<ul
+								tabIndex={0}
+								className='mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52'
+							>
+								<li>
+									<div
+										className='disabled font-bold bg-slate-100 rounded-md'
+										style={{ pointerEvents: 'none' }}
+									>
+										<FaUser />
+										<p>{displayUserFirstName}</p>
+									</div>
+								</li>
+								<li>
+									<Link to='/dashboard/admin/adminHome'>Admin&apos;s Dashboard</Link>
+								</li>
+								<li>
+									<button onClick={handleLogOut}>Logout</button>
+								</li>
+							</ul>
+						</div>
+					)}
+					{user && !isAdmin && isModerator && (
+						<div className='dropdown dropdown-end'>
+							<label tabIndex={0} className='btn btn-ghost btn-circle avatar'>
+								<div className='w-10 rounded-full'>
+									<img alt='user-pic' src={user?.photoURL} />
+								</div>
+							</label>
+							<ul
+								tabIndex={0}
+								className='mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52'
+							>
+								<li>
+									<div
+										className='disabled font-bold bg-slate-100 rounded-md'
+										style={{ pointerEvents: 'none' }}
+									>
+										<FaUser />
+										<p>{displayUserFirstName}</p>
+									</div>
+								</li>
+								<li>
+									<Link to='/dashboard/moderator/modHome'>Moderator&apos;s Dashboard</Link>
 								</li>
 								<li>
 									<button onClick={handleLogOut}>Logout</button>
