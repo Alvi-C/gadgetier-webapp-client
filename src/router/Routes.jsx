@@ -24,6 +24,7 @@ import ModProductReview from '../pages/modarator/components/ModProductReview';
 import AddCoupon from '../pages/admin/components/AddCoupon';
 import UpdateCoupon from '../pages/admin/components/UpdateCoupon';
 import AllCoupons from '../pages/admin/components/AllCoupons';
+// import UserDashboard from "../layouts/dashboard/UserDashboard";
 
 
 
@@ -72,6 +73,10 @@ const Routes = createBrowserRouter([
 		element: <MainDashboard />,
 		children: [
 			//---------normal user's routes-------------------
+			// {
+			// 	path: '/dashboard/userDashboard',
+			// 	element: <UserDashboard/>,
+			// },
 			{
 				path: '/dashboard/user/userHome',
 				element: <UserHome />,

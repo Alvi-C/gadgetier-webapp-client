@@ -1,4 +1,3 @@
-
 import { createContext, useEffect, useState } from 'react'
 import {
 	GoogleAuthProvider,
@@ -52,8 +51,9 @@ const AuthProvider = ({ children }) => {
 	}
 
 	useEffect(() => {
-		const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+		const unsubscribe = onAuthStateChanged(auth, currentUser => {
 			setUser(currentUser)
+			// console.log('current user', currentUser)
 			// get and set token
 			if (currentUser) {
 				const currentUserInfo = { email: currentUser.email }

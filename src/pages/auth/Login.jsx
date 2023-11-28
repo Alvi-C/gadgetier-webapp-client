@@ -24,8 +24,10 @@ const Login = () => {
 		formState: { errors },
 	} = useForm()
 
-	const onSubmit = data => {
-		logIn(data.email, data.password).then(result => {
+	const onSubmit = async (data) => {
+		console.log();
+		await logIn(data.email, data.password)
+			.then(result => {
 			const loggedUser = result.user
 			console.log(loggedUser)
 			Swal.fire({
