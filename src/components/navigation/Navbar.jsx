@@ -5,8 +5,10 @@ import { FaUser } from 'react-icons/fa'
 
 const Navbar = () => {
 
-	const {user, logOut} = useAuth()
-	const displayUserFirstName = user?.displayName.split(' ')[0]
+	const { user, logOut } = useAuth()
+	const displayUserFirstName = user?.displayName?.includes(' ')
+		? user?.displayName.split(' ')[0]
+		: user?.displayName
 
 	const handleLogOut = () => {
 		logOut()
@@ -103,3 +105,8 @@ const Navbar = () => {
 }
 
 export default Navbar
+
+
+
+
+
