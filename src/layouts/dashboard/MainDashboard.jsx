@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react'
 import { HiMenuAlt3 } from 'react-icons/hi'
 import {
@@ -8,14 +7,17 @@ import {
 	mainMenus,
 } from './components/AllMenus'
 import { Link, Outlet } from 'react-router-dom'
-import useAuth from '../../hooks/useAuth';
-import useAdmin from '../../hooks/useAdmin';
-import useModerator from '../../hooks/useModerator';
+import useAuth from '../../hooks/useAuth'
+import useAdmin from '../../hooks/useAdmin'
+import useModerator from '../../hooks/useModerator'
 
 const MainDashboard = () => {
 	const [open, setOpen] = useState(true)
 
-	const { user} = useAuth()
+	const { user } = useAuth()
+	const displayUserFirstName = user?.displayName?.includes(' ')
+		? user?.displayName.split(' ')[0]
+		: user?.displayName
 
 	const [isAdmin] = useAdmin()
 	const [isModerator] = useModerator()
@@ -53,8 +55,8 @@ const MainDashboard = () => {
 						alt=''
 					/>
 					<div className='flex lg:ml-3 mt-2 lg:mt-6 flex-col text-center'>
-						<h3 className='font-medium'>{role}</h3>
-						<p className='text-xs text-gray-500'>{user?.displayName}</p>
+						<h3 className='font-medium'>{displayUserFirstName}</h3>
+						<p className='text-xs text-gray-500'>{role}</p>
 					</div>
 				</div>
 				{/* user info section end*/}
@@ -197,6 +199,6 @@ const MainDashboard = () => {
 			</div>
 		</div>
 	)
-};
+}
 
-export default MainDashboard;
+export default MainDashboard

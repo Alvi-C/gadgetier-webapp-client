@@ -126,8 +126,8 @@ const Login = () => {
 			</div>
 			<div className='col-span-1 lg:col-span-4'>
 				<img
-					src='https://img.freepik.com/free-photo/man-wearing-vr-glasses-with-gradient-background_23-2148864957.jpg?w=826&t=st=1701108636~exp=1701109236~hmac=83b92a19d54d2d244b2127e26535f3567d9ab323796bd8eb737ac2e2ce4bbad9'
-					alt='3 women looking at a laptop'
+					src='https://thegadgetflow.com/wp-content/uploads/2023/05/Sony-2nd-Generation-ELF-SR2-Spatial-Reality-Display-01-1024x576.jpeg'
+					alt=''
 					className='object-cover w-full h-64 min-h-full bg-gray-100'
 					loading='lazy'
 				/>

@@ -24,7 +24,8 @@ import ModProductReview from '../pages/modarator/components/ModProductReview';
 import AddCoupon from '../pages/admin/components/AddCoupon';
 import UpdateCoupon from '../pages/admin/components/UpdateCoupon';
 import AllCoupons from '../pages/admin/components/AllCoupons';
-// import UserDashboard from "../layouts/dashboard/UserDashboard";
+import PrivateRoute from './PrivateRoute';
+
 
 
 
@@ -70,13 +71,13 @@ const Routes = createBrowserRouter([
 	},
 	{
 		path: '/dashboard',
-		element: <MainDashboard />,
+		element: (
+			<PrivateRoute>
+				<MainDashboard />
+			</PrivateRoute>
+		),
 		children: [
 			//---------normal user's routes-------------------
-			// {
-			// 	path: '/dashboard/userDashboard',
-			// 	element: <UserDashboard/>,
-			// },
 			{
 				path: '/dashboard/user/userHome',
 				element: <UserHome />,
@@ -92,6 +93,7 @@ const Routes = createBrowserRouter([
 			{
 				path: '/dashboard/user/updateProduct/:id',
 				element: <UpdateUserProduct />,
+				loader: async ({ params }) => await fetch(`http://localhost:8000/updateProduct/${params.id}`),
 			},
 			{
 				path: '/dashboard/user/productList',
@@ -123,15 +125,15 @@ const Routes = createBrowserRouter([
 			},
 			{
 				path: '/dashboard/admin/addCoupon',
-				element: <AddCoupon/>,
+				element: <AddCoupon />,
 			},
 			{
 				path: '/dashboard/admin/allCoupons',
-				element: <AllCoupons/>,
+				element: <AllCoupons />,
 			},
 			{
 				path: '/dashboard/admin/updateCoupon',
-				element: <UpdateCoupon/>
+				element: <UpdateCoupon />,
 			},
 			{
 				path: '/dashboard/admin/manageCoupons',

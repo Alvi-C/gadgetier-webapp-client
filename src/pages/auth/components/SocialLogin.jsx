@@ -19,11 +19,12 @@ const SocialLogin = () => {
 				name: result.user?.displayName,
 				email: result.user?.email,
 				image: result.user?.photoURL,
-				role: 'user'
+				role: 'user',
+				status: 'Unverified',
 			}
 			axiosPublic.post('/users', userInfo).then(res => {
 				if (res.data.insertedId) {
-					console.log('user added: ', res.data)
+					// console.log('user added: ', res.data)
 					navigate(from, { replace: true })
 				}
 			})

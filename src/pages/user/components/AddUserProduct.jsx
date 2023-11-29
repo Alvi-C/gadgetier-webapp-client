@@ -30,8 +30,8 @@ const AddUserProduct = () => {
 			image: data.productImage,
 			description: data.description,
 			tags: tags,
-			upVote: 0,
-			downVote: 0,
+			upVote: '0',
+			downVote: '0',
 			status: 'pending',
 			reported: 'no',
 		}

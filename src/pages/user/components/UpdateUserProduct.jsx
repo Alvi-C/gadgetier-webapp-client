@@ -1,31 +1,61 @@
-import { useState } from 'react'
-import { TagsInput } from 'react-tag-input-component'
+
 import { useForm } from 'react-hook-form'
+import useAuth from '../../../hooks/useAuth';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import { useLoaderData, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const UpdateUserProduct = () => {
-	const [tags, setTags] = useState(['Shoe', 'Sport'])
+
 	const { register, handleSubmit } = useForm()
+	const { user } = useAuth()
+	const axiosSecure = useAxiosSecure()
+	const navigate = useNavigate()
+
+	const fetchedData = useLoaderData()
+	// console.log(fetchedData);
+	const {_id, productName, image, description} = fetchedData
 
 	const userInfo = {
-		userName: 'David',
-		userEmail: 'aaa@example.com',
-		userImage: 'https://images.unsplash.com',
+		userName: user?.displayName,
+		userEmail: user?.email,
+		userImage: user?.photoURL,
 	}
 
 	const productData = {
-		userName: userInfo.userName,
-		userEmail: userInfo.userEmail,
-		userImage: userInfo.userImage,
-		productName: 'Nike Airwick',
-		image: 'https://www.nike.com',
-		description: 'This is description',
-		tags: tags,
+		productName: productName,
+		image: image,
+		description: description,
 	}
 
-	const onSubmit = data => {
-		console.log(data)
+	const onSubmit = async data => {
+		// console.log(data)
+		// update product
+		const response = await axiosSecure.patch(`/updateProduct/${_id}`, data)
+		console.log(response.data)
+		if (response.data.result.matchedCount > 0) {
+			// update response
+			Swal.fire({
+				position: 'top-end',
+				icon: 'success',
+				title: 'item updated successfully',
+				showConfirmButton: false,
+				timer: 1500,
+			})
+			navigate('/dashboard/user/productList')
+		} else {
+			// update failed
+			Swal.fire({
+				icon: 'error',
+				title: 'Update Failed',
+				text: 'Failed to update the item. Please try again.',
+			})
+		}
 	}
 
+	const handleCancelBtn = () => {
+		navigate('/dashboard/user/productList')
+	}
 
 	return (
 		<div className='min-h-screen flex items-center justify-center bg-green-700'>
@@ -37,7 +67,7 @@ const UpdateUserProduct = () => {
 							<input
 								type='text'
 								disabled
-								defaultValue={userInfo.userName}
+								defaultValue={userInfo?.userName}
 								placeholder='Your name'
 								className='w-full rounded py-3 px-[14px] text-base border outline-none focus-visible:shadow-none focus:border-green-500'
 							/>
@@ -89,23 +119,16 @@ const UpdateUserProduct = () => {
 								className='w-full rounded py-3 px-[14px] text-base border outline-none focus-visible:shadow-none focus:border-green-500'
 							></textarea>
 						</div>
-						<div>
-							<TagsInput
-								value={tags}
-								onChange={setTags}
-								name='tags'
-								placeHolder='Enter tags'
-							/>
-							<em className='text-slate-400 text-sm'>
-								you cannot change tags
-							</em>
-						</div>
+
 						<input
 							type='submit'
 							value='Update Product'
 							className='mt-6 px-6 py-2 text-sm font-medium text-white leading-tight inline-block bg-green-700 rounded-full shadow-xl border border-transparent hover:bg-green-800'
 						/>
 					</form>
+					<button onClick={handleCancelBtn} className='mt-6 px-6 py-2 text-sm font-medium text-white leading-tight inline-block bg-green-700 rounded-full shadow-xl border border-transparent hover:bg-green-800'>
+						Cancel
+					</button>
 				</div>
 			</div>
 		</div>

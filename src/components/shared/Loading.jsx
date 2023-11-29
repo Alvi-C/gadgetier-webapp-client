@@ -2,7 +2,7 @@
 
 const Loading = () => {
     return (
-			<div className="flex items-center justify-center">
+			<div className="h-screen flex items-center justify-center">
 				<div className='py-2 text-green-600'>
 					<svg
 						className='w-10 h-10'
