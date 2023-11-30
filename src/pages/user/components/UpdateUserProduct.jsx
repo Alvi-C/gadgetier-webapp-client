@@ -33,7 +33,7 @@ const UpdateUserProduct = () => {
 		// update product
 		const response = await axiosSecure.patch(`/updateProduct/${_id}`, data)
 		console.log(response.data)
-		if (response.data.result.matchedCount > 0) {
+		if (response.data?.result?.matchedCount > 0) {
 			// update response
 			Swal.fire({
 				position: 'top-end',

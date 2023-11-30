@@ -20,7 +20,7 @@ const SocialLogin = () => {
 				email: result.user?.email,
 				image: result.user?.photoURL,
 				role: 'user',
-				status: 'Unverified',
+				status: 'unverified',
 			}
 			axiosPublic.post('/users', userInfo).then(res => {
 				if (res.data.insertedId) {

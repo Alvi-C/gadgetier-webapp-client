@@ -25,6 +25,8 @@ import AddCoupon from '../pages/admin/components/AddCoupon';
 import UpdateCoupon from '../pages/admin/components/UpdateCoupon';
 import AllCoupons from '../pages/admin/components/AllCoupons';
 import PrivateRoute from './PrivateRoute';
+import AdminRoutes from "./AdminRoutes";
+import ModRoutes from './ModRoutes';
 
 
 
@@ -93,7 +95,8 @@ const Routes = createBrowserRouter([
 			{
 				path: '/dashboard/user/updateProduct/:id',
 				element: <UpdateUserProduct />,
-				loader: async ({ params }) => await fetch(`http://localhost:8000/updateProduct/${params.id}`),
+				loader: async ({ params }) =>
+					await fetch(`http://localhost:8000/updateProduct/${params.id}`),
 			},
 			{
 				path: '/dashboard/user/productList',
@@ -103,41 +106,77 @@ const Routes = createBrowserRouter([
 			//---------modaretor's routes-------------------
 			{
 				path: '/dashboard/moderator/modHome',
-				element: <ModaratorHome />,
+				element: (
+					<ModRoutes>
+						<ModaratorHome />
+					</ModRoutes>
+				),
 			},
 			{
 				path: '/dashboard/moderator/productsReview',
-				element: <ModProductReview />,
+				element: (
+					<ModRoutes>
+						<ModProductReview />
+					</ModRoutes>
+				),
 			},
 			{
 				path: '/dashboard/moderator/reports',
-				element: <ModManageReport />,
+				element: (
+					<ModRoutes>
+						<ModManageReport />
+					</ModRoutes>
+				),
 			},
 
 			//---------admin's routes-------------------
 			{
 				path: '/dashboard/admin/adminHome',
-				element: <AdminHome />,
+				element: (
+					<AdminRoutes>
+						<AdminHome />
+					</AdminRoutes>
+				),
 			},
 			{
 				path: '/dashboard/admin/manageUsers',
-				element: <ManageUsers />,
+				element: (
+					<AdminRoutes>
+						<ManageUsers />
+					</AdminRoutes>
+				),
 			},
 			{
 				path: '/dashboard/admin/addCoupon',
-				element: <AddCoupon />,
+				element: (
+					<AdminRoutes>
+						<AddCoupon />
+					</AdminRoutes>
+				),
 			},
 			{
 				path: '/dashboard/admin/allCoupons',
-				element: <AllCoupons />,
+				element: (
+					<AdminRoutes>
+						<AllCoupons />
+					</AdminRoutes>
+				),
 			},
 			{
 				path: '/dashboard/admin/updateCoupon',
-				element: <UpdateCoupon />,
+				element: (
+					<AdminRoutes>
+						<UpdateCoupon />
+					</AdminRoutes>
+				),
 			},
 			{
 				path: '/dashboard/admin/manageCoupons',
-				element: <ManageCoupons />,
+				element: (
+					<AdminRoutes>
+						<ManageCoupons />
+					</AdminRoutes>
+				),
 			},
 		],
 	},

@@ -30,7 +30,7 @@ const Signup = () => {
 					email: data.email,
 					image: data.photoURL,
 					role: 'user',
-					status: 'Unverified',
+					status: 'unverified',
 				}
 				axiosPublic.post('/users', userInfo).then(res => {
 					if (res.data.insertedId) {

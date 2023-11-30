@@ -48,7 +48,7 @@ const ModProductReview = () => {
 
 	const handleCreateFeaturedBtn = async (id) => {
 		const res = await axiosSecure.patch(`/createFeatured/${id}`)
-		if (res.data.result.modifiedCount > 0) {
+		if (res.data?.result?.modifiedCount > 0) {
 			Swal.fire({
 				title: 'Item is featured now!',
 				icon: 'success',
@@ -59,7 +59,7 @@ const ModProductReview = () => {
 
 	const handleCancelFeaturedBtn = async (id) => {
 		const res = await axiosSecure.patch(`/cancelFeatured/${id}`)
-		if (res.data.result.modifiedCount > 0) {
+		if (res.data?.result?.modifiedCount > 0) {
 			Swal.fire({
 				title: 'Item is Unfeatured now!',
 				icon: 'success',
@@ -70,7 +70,7 @@ const ModProductReview = () => {
 
 	const handleRejectBtn = async (id) => {
 		const res = await axiosSecure.patch(`/rejectProduct/${id}`)
-		if (res.data.result.modifiedCount > 0) {
+		if (res.data?.result?.modifiedCount > 0) {
 			Swal.fire({
 				title: 'Rejected!',
 				icon: 'success',
@@ -103,26 +103,26 @@ const ModProductReview = () => {
 						</thead>
 						<tbody>
 							{allProducts.map((product, index) => (
-								<tr key={product._id} className='text-center text-slate-500'>
+								<tr key={product?._id} className='text-center text-slate-500'>
 									<th>{index + 1}</th>
-									<td>{product.productName}</td>
-									<td>{product.email}</td>
+									<td>{product?.productName}</td>
+									<td>{product?.email}</td>
 									<td>
 										<button
-											onClick={() => handleCheckDetaits(product._id)}
+											onClick={() => handleCheckDetaits(product?._id)}
 											className='badge badge-info text-xs text-white hover:bg-sky-600'
 										>
 											Check
 										</button>
 									</td>
 									<td>
-										{product.status === 'approved' ? (
+										{product?.status === 'approved' ? (
 											<p className='badge bg-slate-300 text-xs text-black disabled'>
 												Accepted
 											</p>
 										) : (
 											<button
-												onClick={() => handleAcceptBtn(product._id)}
+												onClick={() => handleAcceptBtn(product?._id)}
 												className='badge badge-success text-xs text-white hover:bg-green-700'
 											>
 												Accept
@@ -130,16 +130,16 @@ const ModProductReview = () => {
 										)}
 									</td>
 									<td>
-										{product.featured === 'yes' ? (
+										{product?.featured === 'yes' ? (
 											<button
-												onClick={() => handleCancelFeaturedBtn(product._id)}
+												onClick={() => handleCancelFeaturedBtn(product?._id)}
 												className='badge bg-slate-300 text-xs text-black hover:bg-red-500 hover:text-white'
 											>
 												Cancel Featured
 											</button>
 										) : (
 											<button
-												onClick={() => handleCreateFeaturedBtn(product._id)}
+												onClick={() => handleCreateFeaturedBtn(product?._id)}
 												className='badge bg-yellow-500 text-xs text-white hover:bg-yellow-700'
 											>
 												Featured
@@ -147,13 +147,13 @@ const ModProductReview = () => {
 										)}
 									</td>
 									<td>
-										{product.status === 'rejected' ? (
+										{product?.status === 'rejected' ? (
 											<p className='badge bg-rose-300 text-xs text-black disabled'>
 												Rejected
 											</p>
 										) : (
 											<button
-												onClick={() => handleRejectBtn(product._id)}
+												onClick={() => handleRejectBtn(product?._id)}
 												className='badge bg-red-500 text-xs text-white hover:bg-red-700'
 											>
 												Reject

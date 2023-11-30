@@ -45,13 +45,13 @@ const UserProductList = () => {
 		}).then(async result => {
 			// console.log(result)
 			if (result.isConfirmed) {
-				const res = await axiosSecure.delete(`/deleteProduct/${product._id}`)
+				const res = await axiosSecure.delete(`/deleteProduct/${product?._id}`)
 				// console.log(res.data.result.deletedCount)
 				if (res.data?.result?.deletedCount > 0) {
 					refetch()
 					Swal.fire({
 						title: 'Deleted!',
-						text: `${product.productName} has been deleted`,
+						text: `${product?.productName} has been deleted`,
 						icon: 'success',
 					})
 				}
@@ -82,22 +82,22 @@ const UserProductList = () => {
 						{userProduct?.map((product, index) => (
 							<tr key={index} className='text-center text-slate-500'>
 								<td>{index + 1}</td>
-								<td>{product.productName}</td>
-								<td>{product.upVote}</td>
+								<td>{product?.productName}</td>
+								<td>{product?.upVote}</td>
 								<td>
 									<div
 										className={`badge gap-2 text-xs text-white ${
-											product.status === 'Accepted'
+											product?.status === 'approved'
 												? 'badge-success'
 												: 'badge-error'
 										}`}
 									>
-										{product.status}
+										{product?.status}
 									</div>
 								</td>
 								<td className='flex items-center justify-center'>
 									<div className='flex items-center space-x-6'>
-										<Link to={`/dashboard/user/updateProduct/${product._id}`}>
+										<Link to={`/dashboard/user/updateProduct/${product?._id}`}>
 											<button className='text-yellow-500 text-xl'>
 												<RiFileEditFill />
 											</button>
