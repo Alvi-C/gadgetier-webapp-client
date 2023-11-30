@@ -1,5 +1,6 @@
 
-import PrimaryButton from '../../components/shared/PrimaryButton'
+
+import { useNavigate } from 'react-router-dom'
 import VoteInfo from '../../components/shared/VoteInfo'
 import DetailsInfo from './components/DetailsInfo'
 import ReviewForm from './components/ReviewForm'
@@ -7,6 +8,10 @@ import Reviews from './components/Reviews'
 
 const ProductDetails = () => {
 
+	const navigate = useNavigate()
+	const handleGoBack = () => {
+		navigate(-1)
+	}
 
 	return (
 		<div className='container-size px-2 mt-10'>
@@ -21,7 +26,9 @@ const ProductDetails = () => {
 							/>
 						</div>
 						<div className='flex items-center justify-between mb-8'>
-							<PrimaryButton title='Go back' />
+							<button onClick={handleGoBack} className='px-6 py-2 text-sm font-medium text-white leading-tight inline-block bg-green-700 rounded-full shadow-xl border border-transparent hover:bg-green-800'>
+								Go back
+							</button>
 							<VoteInfo />
 						</div>
 						<div>

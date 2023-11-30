@@ -34,6 +34,7 @@ const AddUserProduct = () => {
 			downVote: '0',
 			status: 'pending',
 			reported: 'no',
+			featured: 'no',
 		}
 		// console.log(productData)
 

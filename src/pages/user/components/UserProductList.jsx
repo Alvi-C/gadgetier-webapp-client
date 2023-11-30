@@ -12,11 +12,7 @@ const UserProductList = () => {
 	const axiosSecure = useAxiosSecure()
 
 	const {
-		data: userProduct,
-		isLoading,
-		error,
-		refetch
-	} = useQuery({
+		data: userProduct, isLoading, error, refetch} = useQuery({
 		queryKey: ['userProduct', user?.email],
 		queryFn: async () => {
 			if (!user?.email) {
