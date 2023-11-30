@@ -7,19 +7,19 @@ const Reviews = ({ review }) => {
 			<div className='flex items-start'>
 				<img
 					className='block h-10 w-10 max-w-full flex-shrink-0 rounded-full align-middle'
-					src={review.userImage}
-					alt={review.userName}
+					src={review?.userImage}
+					alt={review?.userName}
 				/>
 
 				<div className='ml-6'>
 					<div className='flex items-center'>
-						<StarRating rating={review.rating} />
+						<StarRating rating={review?.rating} />
 					</div>
-					<p className='mt-5 text-sm text-gray-900'>{review.review}</p>
+					<p className='mt-5 text-sm text-gray-900'>{review?.review}</p>
 					<p className='mt-5 text-sm font-bold text-gray-900'>
-						{review.userName}
+						{review?.userName}
 					</p>
-					<p className='mt-1 text-sm text-gray-600'>{review.datePosted}</p>
+					<p className='mt-1 text-sm text-gray-600'>{review?.datePosted}</p>
 				</div>
 			</div>
 		</li>

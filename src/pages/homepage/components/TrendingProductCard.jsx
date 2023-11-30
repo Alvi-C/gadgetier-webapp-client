@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 
 
 const TrendingProductCard = ({ product }) => {
@@ -14,14 +13,6 @@ const TrendingProductCard = ({ product }) => {
 					{product?.productName}
 				</span>
 			</p>
-			<div className='flex items-center justify-between'>
-				<Link
-					to={`/products/${product?._id}`}
-					className='text-indigo-500 text-xs inline-flex items-center mt-2 md:mb-2 lg:mb-0'
-				>
-					Learn More
-				</Link>
-			</div>
 		</div>
 	)
 }

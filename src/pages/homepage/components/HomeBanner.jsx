@@ -7,8 +7,7 @@ const HomeBanner = () => {
 				<div
 					className='relative bg-no-repeat bg-cover h-[40rem] bg-fixed'
 					style={{
-						backgroundImage:
-							"url('https://www.eweek.com/wp-content/uploads/2023/05/top-generative-ai-apps-tools.png')",
+						backgroundImage: "url('https://i.ibb.co/LCRx7KC/bg2222-copy.jpg')",
 					}}
 				>
 					<div className='absolute inset-x-0 bottom-0'>

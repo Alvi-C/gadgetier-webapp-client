@@ -47,9 +47,13 @@ const Routes = createBrowserRouter([
 			},
 			{
 				path: '/products/:id',
-				element: <ProductDetails />,
+				element: (
+					<PrivateRoute>
+						<ProductDetails />
+					</PrivateRoute>
+				),
 				loader: async ({ params }) =>
-					await fetch(`http://localhost:8000/product/${params.id}`),
+					await fetch(`https://gadegetier.vercel.app/product/${params.id}`),
 			},
 			{
 				path: '/login',
@@ -98,7 +102,7 @@ const Routes = createBrowserRouter([
 				path: '/dashboard/user/updateProduct/:id',
 				element: <UpdateUserProduct />,
 				loader: async ({ params }) =>
-					await fetch(`http://localhost:8000/updateProduct/${params.id}`),
+					await fetch(`https://gadegetier.vercel.app/updateProduct/${params.id}`),
 			},
 			{
 				path: '/dashboard/user/productList',

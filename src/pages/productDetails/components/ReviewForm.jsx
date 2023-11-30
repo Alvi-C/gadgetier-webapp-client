@@ -4,7 +4,7 @@ import useAuth from '../../../hooks/useAuth';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
 
-const ReviewForm = ({ product }) => {
+const ReviewForm = ({ product, refresh, setRefresh }) => {
 	const axiosPublic = useAxiosPublic()
 	const { register, handleSubmit, reset } = useForm()
 
@@ -19,7 +19,6 @@ const ReviewForm = ({ product }) => {
 	const datePosted = moment(new Date()).format('ll')
 
 	const onSubmit = async data => {
-
 		const reviewData = {
 			userName: userInfo.userName,
 			userEmail: userInfo.userEmail,
@@ -35,6 +34,7 @@ const ReviewForm = ({ product }) => {
 			const res = await axiosPublic.post('/postReview', reviewData)
 
 			if (res.data?.insertedId) {
+				setRefresh(!refresh)
 				reset()
 				Swal.fire({
 					position: 'top-end',
@@ -67,6 +67,7 @@ const ReviewForm = ({ product }) => {
 		}
 	}
 
+	// console.log(refresh);
 	return (
 		<div>
 			<p className='font-bold text-gray-700 '>Post a review:</p>

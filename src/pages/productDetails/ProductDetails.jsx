@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react'
 
 const ProductDetails = () => {
 	const [reviews, setReviews] = useState([])
+	const [refresh, setRefresh] = useState(false)
 	const { user } = useAuth()
 
 	const product = useLoaderData()
@@ -19,6 +20,7 @@ const ProductDetails = () => {
 			try {
 				const response = await axiosPublic.get(`/allReviews/${product?._id}`)
 				setReviews(response.data)
+
 			} catch (error) {
 				console.error('Error fetching reviews:', error)
 			}
@@ -27,7 +29,7 @@ const ProductDetails = () => {
 		if (product?._id) {
 			fetchReviews()
 		}
-	}, [product?._id, axiosPublic])
+	}, [product?._id, axiosPublic, refresh])
 
 	const navigate = useNavigate()
 	const handleGoBack = () => {
@@ -87,7 +89,7 @@ const ProductDetails = () => {
 									You have posted this product.
 								</p>
 							) : (
-								<ReviewForm product={product} />
+								<ReviewForm product={product} refresh={refresh} setRefresh={setRefresh} />
 							)}
 						</div>
 					</div>

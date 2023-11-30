@@ -1,23 +1,23 @@
 import { useEffect, useState } from 'react'
 import useAuth from '../../hooks/useAuth'
-import axios from 'axios' // Or use your axios instance
-import useAxiosPublic from '../../hooks/useAxiosPublic';
+import useAxiosPublic from '../../hooks/useAxiosPublic'
 
 const VoteInfo = ({ productId }) => {
 	const { user } = useAuth()
 	const [hasVoted, setHasVoted] = useState(false)
 	const [votes, setVotes] = useState({ upVote: 0, downVote: 0 })
+	const [posterUserId, setPosterUserId] = useState(null)
 	const axiosPublic = useAxiosPublic()
 
 	useEffect(() => {
-		// Fetch the current votes for the product
 		const fetchVotes = async () => {
 			try {
-				const response = await axiosPublic.get(`/product/${productId}`)
+				const response = await axiosPublic.get(`/singleProduct/${productId}`)
 				setVotes({
 					upVote: parseInt(response.data.upVote, 10),
 					downVote: parseInt(response.data.downVote, 10),
 				})
+				setPosterUserId(response.data.posterUserId)
 			} catch (error) {
 				console.error('Error fetching vote data:', error)
 			}
@@ -27,21 +27,38 @@ const VoteInfo = ({ productId }) => {
 	}, [productId, axiosPublic])
 
 	const handleVote = async voteType => {
+		if (!user) {
+			alert('You must be logged in to vote.')
+			return
+		}
+
+		if (user._id === posterUserId) {
+			alert('You cannot vote on your own product.')
+			return
+		}
+
 		if (hasVoted) {
 			alert('You have already voted for this product.')
 			return
 		}
 
 		try {
-			await axios.post(`/vote/${productId}`, { userId: user._id, voteType })
+			const response = await axiosPublic.post(`/vote/${productId}`, {
+				userId: user._id,
+				voteType,
+			})
+			alert(response.data.message)
 			setHasVoted(true)
-			// Optimistically update the vote count
 			setVotes(prevVotes => ({
 				...prevVotes,
 				[voteType]: prevVotes[voteType] + 1,
 			}))
 		} catch (error) {
-			console.error('Error in voting:', error)
+			if (error.response && error.response.status === 409) {
+				alert(error.response.data.message)
+			} else {
+				console.error('Error in voting:', error)
+			}
 		}
 	}
 
