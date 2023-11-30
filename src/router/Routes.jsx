@@ -48,6 +48,8 @@ const Routes = createBrowserRouter([
 			{
 				path: '/products/:id',
 				element: <ProductDetails />,
+				loader: async ({ params }) =>
+					await fetch(`http://localhost:8000/product/${params.id}`),
 			},
 			{
 				path: '/login',

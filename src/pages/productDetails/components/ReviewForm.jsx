@@ -1,29 +1,70 @@
 import moment from 'moment'
 import { useForm } from 'react-hook-form'
+import useAuth from '../../../hooks/useAuth';
+import useAxiosPublic from '../../../hooks/useAxiosPublic';
+import Swal from 'sweetalert2';
 
-const ReviewForm = () => {
+const ReviewForm = ({ product }) => {
+	const axiosPublic = useAxiosPublic()
 	const { register, handleSubmit, reset } = useForm()
 
-	const userInfo = {
-		userName: 'David',
-		userEmail: 'aaa@example.com',
-		userImage: 'https://images.unsplash.com',
-	}
-	const date = new Date()
-	const datePosted = moment(date).format('ll')
-	console.log(datePosted);
+	const { user } = useAuth()
 
-	const onSubmit = data => {
+	const userInfo = {
+		userName: user?.displayName,
+		userEmail: user?.email,
+		userImage: user?.photoURL,
+	}
+
+	const datePosted = moment(new Date()).format('ll')
+
+	const onSubmit = async data => {
 
 		const reviewData = {
 			userName: userInfo.userName,
 			userEmail: userInfo.userEmail,
 			userImage: userInfo.userImage,
+			productId: product?._id,
 			rating: data.rating,
 			review: data.review,
+			datePosted: datePosted,
 		}
-		console.log(reviewData)
-		reset()
+		// console.log(reviewData)
+
+		try {
+			const res = await axiosPublic.post('/postReview', reviewData)
+
+			if (res.data?.insertedId) {
+				reset()
+				Swal.fire({
+					position: 'top-end',
+					icon: 'success',
+					title: 'Review added successfully',
+					showConfirmButton: false,
+					timer: 1500,
+				})
+			}
+		} catch (error) {
+			if (error.response?.status === 409) {
+				// If the user already reviewed the product
+				Swal.fire({
+					position: 'top-end',
+					icon: 'error',
+					title: error.response.data.message,
+					showConfirmButton: false,
+					timer: 2000,
+				})
+			} else {
+				// Handle other errors
+				Swal.fire({
+					position: 'top-end',
+					icon: 'error',
+					title: 'An error occurred while posting your review',
+					showConfirmButton: false,
+					timer: 2000,
+				})
+			}
+		}
 	}
 
 	return (
@@ -37,6 +78,7 @@ const ReviewForm = () => {
 						</label>
 						<input
 							type='text'
+							disabled
 							defaultValue={userInfo.userName}
 							placeholder='Enter your name'
 							className='w-full text-sm rounded-md border bg-white px-2 py-2 outline-none ring-slate-600 focus:ring-1'
@@ -48,6 +90,7 @@ const ReviewForm = () => {
 						</label>
 						<input
 							type='email'
+							disabled
 							defaultValue={userInfo.userEmail}
 							placeholder='Enter your email'
 							className='w-full text-sm rounded-md border bg-white px-2 py-2 outline-none ring-slate-600 focus:ring-1'
@@ -59,6 +102,7 @@ const ReviewForm = () => {
 						</label>
 						<input
 							type='text'
+							disabled
 							defaultValue={userInfo.userImage}
 							placeholder='image url'
 							className='w-full text-sm rounded-md border bg-white px-2 py-2 outline-none ring-slate-600 focus:ring-1'
